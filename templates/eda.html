@@ -1,0 +1,284 @@
+{% extends 'base.html' %}
+{% block content %}
+<script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+<section id="minimal-statistics">
+  <div class=" container-fluid px-5 pt-3">
+    <div class="row">
+      <div class="col-sm-3">
+        <div class="card border border-0">
+          <div class="card-content">
+            <div class="card-body">
+              <div class="media d-flex">
+                <div class="align-self-center">
+                  <i class="icon-pencil primary font-large-2 float-left"></i>
+                </div>
+                <div class="media-body text-right">
+                  <h3 class="mukta-semibold">{{rows}}</h3>
+                  <span class="mukta-regular">Rows</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class=" col-sm-3 ">
+        <div class="card border border-0">
+          <div class="card-content">
+            <div class="card-body">
+              <div class="media d-flex">
+                <div class="align-self-center">
+                  <i class="icon-speech warning font-large-2 float-left"></i>
+                </div>
+                <div class="media-body text-right">
+                  <h3 class="mukta-semibold">{{col}}</h3>
+                  <span class="mukta-regular">Columns</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    
+    <div class="col-sm-3 ">
+      <div class="card border border-0">
+        <div class="card-content">
+          <div class="card-body">
+            <div class="media d-flex">
+              <div class="align-self-center">
+                <i class="icon-graph success font-large-2 float-left"></i>
+              </div>
+              <div class="media-body text-right">
+                <h3 class="mukta-semibold">0</h3>
+                <span class="mukta-regular">Null values</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-3 ">
+      <div class="card border border-0">
+        <div class="card-content">
+          <div class="card-body">
+            <div class="media d-flex">
+              <div class="align-self-center">
+                <i class="icon-pointer danger font-large-2 float-left"></i>
+              </div>
+              <div class="media-body text-right">
+                <h3 class="mukta-semibold">int64, float64</h3>
+                <span class="mukta-regular">Data types</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  </div>
+  <div class="container-fluid px-5 pt-3">
+    <div class="row my-3">
+      <div class="col-xl-3 col-sm-6 col-12">
+        <div class="card border border-0" >
+          <div class="card-content">
+            <div class="card-body">
+              <div class="media d-flex">
+                <div class="media-body text-left">
+                  <h3 class="danger mukta-semibold">100</h3>
+                  <span class="mukta-regular">Engines</span>
+                </div>
+                <div class="align-self-center">
+                  <i class="icon-rocket danger font-large-2 float-right"></i>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-xl-3 col-sm-6 col-12">
+        <div class="card border border-0">
+          <div class="card-content">
+            <div class="card-body">
+              <div class="media d-flex">
+                <div class="media-body text-left">
+                  <h3 class="success mukta-semibold">1</h3>
+                  <span class="mukta-regular">Lowest cycle</span>
+                </div>
+                <div class="align-self-center">
+                  <i class="icon-user success font-large-2 float-right"></i>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+  
+      
+      <div class="col-xl-3 col-sm-6 col-12">
+        <div class="card border border-0">
+          <div class="card-content">
+            <div class="card-body">
+              <div class="media d-flex">
+                <div class="media-body text-left">
+                  <h3 class="primary mukta-semibold">362</h3>
+                  <span class="mukta-regular">Highest Cycle</span>
+                </div>
+                <div class="align-self-center">
+                  <i class="font-large-2 float-right"></i>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  
+  </div>
+</section>
+<section>
+  <div class="container fluid px-5 pt-3">
+    <div class="row">
+      
+      <div class="col-sm-6 offset-3">
+    <button type="button" class="btn btn-dark mukta-regular ms-5 my-3" data-bs-toggle="modal" data-bs-target="#headModal">
+      See first few rows
+    </button>
+    <button type="button" class="btn btn-dark mukta-regular  my-3" data-bs-toggle="modal" data-bs-target="#descModal">
+      View descriptive statistics
+    </button>
+    </div>
+  </div>
+</section>
+<section>
+  <div class="container-fluid px-5 pt-3">
+    <div class="row">
+      <div class="col-12 mt-3 mb-1">
+      
+        
+          <h4 class="text-uppercase mukta-semibold m-3">UNIVARIATE ANALYSIS</h4>
+          <img src="static/pairplot.png" width="1100">
+          <p class="eb-garamond-light" style="text-align: justify;">Some of the variables follow normal distribution. On the other hand some variables like Sensor9 are constant.</p>
+      </div>
+    </div>
+  </div>
+  <div class="container-fluid px-5 pt-3">
+    <div class="row">
+      <div class="m-4">
+        <h4 class="text-uppercase mukta-semibold">DISTRIBUTION OF TARGET VARIABLE</h4>
+        <img src="static/remaining cycles.png" width="700">
+        <p class="eb-garamond-light" style="text-align: justify;">There is equal distribution for instances with remaining life between 0 and 150</p>
+      </div>
+    </div>
+  </div>
+  <div class="container-fluid px-5 pt-1">
+    <div class="row">
+      <div class="col-11 m-2">
+        <h4 class="text-uppercase mukta-semibold">BIVARIATE ANALYSIS</h4>
+        <h5>Pairplots</h5>
+        <img src="static/pairplot1.png" width="1150" class="m-3">
+        
+        <img src="static/pairplot2.png" width="1150" class="m-3">
+        <br>
+        
+        <img src="static/pairplot3.png" width="1150" class="m-3">
+        <br>
+        <img src="static/pairplot4.png" width="1150" class="m-3">
+        <img src="static/pairplot5.png" width="1150" class="m-3">
+        <img src="static/pairplot6.png" width="1150" class="m-3">
+        <p class="eb-garamond-light" style="text-align: justify;">Some of the features have a relationship between them. On the other hand, the values of certain sensors have the same value, irrespective of remaining cycles.</p>
+        <h5 class="mukta-semibold">Heatmap</h5>
+        <p class="eb-garamond-light" style="text-align: justify;">The pink areas show there is little to no correlation between the respective variables.
+          As expected, all the sensors we found independent of cycle are indicated as having no correlation with Cycle(and thus, remaining cycle)
+        However, we see strong multicollinearity between the independent variables.</p>
+        <img src="static/heatmap.png" width="1180">
+      </div>
+      
+    </div>
+  </div>
+
+</section>
+<section>
+
+  <div class="container-fluid px-5 pt-3">
+    <div>
+      <h4 class="text-uppercase mukta-semibold">MULTIVARIATE ANALYSIS</h4>
+
+      <h4 class="text-uppercase p-3">ANDREW'S CURVE</h4>
+      <img src="static/andrews_curves.png" width="700">
+      <p class="eb-garamond-light" style="text-align: justify;">
+        Andrews curves are used for visualizing high-dimensional data by mapping each observation onto a function
+        <br>
+        The data points which had remaining cycles &lt 50 (chosen arbitrarily) were grouped into the class 1. The remaining were grouped into class 0.
+        We can see that the Andrew's curve representing class 0 and class 1 are more or less the same, except in a few places (where protruding blue areas are visible).
+      </p>
+    </div>
+    <h4 class="text-uppercase p-3">Parallel Coordinates plot</h4>
+
+    <div id="parcoords"></div>
+    <p class="eb-garamond-light" style="text-align: justify;">
+      A parallel coordinate plot is graphical method where each observation or data point is depicted as a line traversing a series of parallel axes, corresponding to a specific variable or dimension. This arrangement allows for the exploration of relationships, trends, and variations that might be obscured in raw data.
+      <br>
+      The hue is based on the remaining cycle of each datapoint in the dataset. Here dark blue lines represents a high number of remaining cycle and yellow represents remaining cycles closer to zero.
+      We see all those values of a particular sensor for which the remaining cycles are low. The graph is interactive, so feel free to play around with it by dragging across any of the vertical axes, which selects a range of values from that axis.
+      <br><br><br><br>
+    </p>
+  </div>
+</section>
+<div class="modal fade" id="headModal" tabindex="-1" aria-labelledby="headModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-xl modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        
+          
+              {% for table  in tables %}
+               
+                 {{titles[loop.index]}}
+               {{table|safe}}
+                
+
+            {% endfor %}
+      </div>
+    </div>
+  </div>
+
+</div>
+<div class="modal fade" id="descModal" tabindex="-1" aria-labelledby="descModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-xl modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        
+          
+              {% for table  in desc_tables %}
+               
+                 {{desc_titles[loop.index]}}
+               {{table|safe}}
+                
+
+            {% endfor %}
+          
+       
+        
+      </div>
+    </div>
+  </div>
+
+</div>
+
+
+<script type="text/javascript">
+
+  // here is where the JSON gets plugged in via JS
+  var the_pubs_graph = {{ figure | safe}};
+
+  // you target the graph div id in the first arg, 
+  // put your graph in the second, and set the third as {}
+  Plotly.plot("parcoords", the_pubs_graph, {});
+
+</script>
+
+{% endblock %} 
