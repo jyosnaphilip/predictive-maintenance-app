@@ -66,4 +66,4 @@ jobs:
         with:
           app-name: 'predictivemaintenance30daysml'
           slot-name: 'Production'
-          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_915AB08AA4DA4A2F9C98B830007E8B9D }}
+          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_64545CDACDF44A5BBFC5A14EF77CCAB4 }}
