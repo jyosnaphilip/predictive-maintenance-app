@@ -5,14 +5,13 @@ import numpy as np
 import pandas as pd
 from sklearn.preprocessing import StandardScaler
 import io
-import matplotlib.pyplot as plt
 import plotly.express as px
-from dotenv import load_dotenv
+
 from plotly import utils
 from json import dumps
 
 
-load_dotenv()
+
 
 
 app = Flask(__name__)
