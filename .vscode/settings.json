@@ -1,4 +1,0 @@
-{
-    "appService.defaultWebAppToDeploy": "/subscriptions/b062fb60-9880-413b-b4ef-aa9f703ee17c/resourceGroups/rg-predictive-maintenance/providers/Microsoft.Web/sites/predictivemaintenance30daysml",
-    "appService.deploySubpath": "."
-}
