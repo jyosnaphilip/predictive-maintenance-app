@@ -3,8 +3,9 @@ import os
 import pickle
 import numpy as np
 import pandas as pd
-from sklearn.preprocessing import StandardScaler
+# from sklearn.preprocessing import StandardScaler
 import io
+import sklearn
 import plotly.express as px
 
 from plotly import utils
@@ -16,31 +17,33 @@ from json import dumps
 
 app = Flask(__name__)
 
-model = pickle.load(open('lstm.pkl', 'rb'))
+# model = pickle.load(open('lstm.pkl', 'rb'))
 model2 = pickle.load(open('mlp_clipped_model.pkl', 'rb'))
 model3 = pickle.load(open('xgb_clipped_model.pkl', 'rb'))
-model4 = pickle.load(open('CNN_LSTM.pkl', 'rb'))
+# model4 = pickle.load(open('CNN_LSTM.pkl', 'rb'))
 
-scaler = pickle.load(open('scaler.sav', 'rb'))
-pca = pickle.load(open('pca.sav', 'rb'))
+# scaler = pickle.load(open('scaler.sav', 'rb'))
+# pca = pickle.load(open('pca.sav', 'rb'))
 data = pd.read_csv('Modified_Raw.csv')
-
+data_model=pd.read_csv("new_data.csv")
+data_model.drop(columns=["a"],inplace=True)
 rul = data['RUL'] #Actual remaining useful life of test samples
-data.drop('RUL', axis = 1, inplace=True)
+# data.drop('RUL', axis = 1, inplace=True)
 # Transform data for LSTM Model
-inp_data = data.dropna()
+# inp_data = data.dropna()
 eda_data=pd.read_csv('train_FD001.csv')
+
 pd.DataFrame.iteritems = pd.DataFrame.items  #to replace the use of a deprecated feature of pandas in plotly(iteritems is deprecated)
 
-def preprocess(data):
-    # Exponential Weighted Mean on Test Data
-    data = data.drop(['Sensor1', 'Sensor2', 'Sensor3', 'Sensor4', 'Sensor5', 'Sensor6', 'Sensor8','Sensor9', 'Sensor13', 'Sensor19', 'Sensor21', 'Sensor22', 'Sensor24'], axis=1)
-    ewm_data = data.ewm(10).mean()
-    scaled_data = scaler.transform(ewm_data)
-    pca_data = pca.transform(scaled_data)
-    scaled_df = pd.DataFrame(columns = ewm_data.columns, data = scaled_data)
-    scaled_df['PC1'] = pca_data[:, 0]
-    return scaled_df
+# def preprocess(data):
+#     # Exponential Weighted Mean on Test Data
+#     data = data.drop(['Sensor1', 'Sensor2', 'Sensor3', 'Sensor4', 'Sensor5', 'Sensor6', 'Sensor8','Sensor9', 'Sensor13', 'Sensor19', 'Sensor21', 'Sensor22', 'Sensor24'], axis=1)
+#     ewm_data = data.ewm(10).mean()
+#     scaled_data = scaler.transform(ewm_data)
+#     pca_data = pca.transform(scaled_data)
+#     scaled_df = pd.DataFrame(columns = ewm_data.columns, data = scaled_data)
+#     scaled_df['PC1'] = pca_data[:, 0]
+#     return scaled_df
     
 @app.route('/')
 def index():
@@ -93,9 +96,10 @@ def handle_buttons():
         # pred = model.predict(test_data)
         
         #MLP predict
-        data = preprocess(inp_data.drop(['Cycles'], axis=1))
-        data['Cycles'] = inp_data['Cycles']
-        test_data = np.array(data.iloc[-1, :]).reshape(1,-1)
+        # data = preprocess(inp_data.drop(['Cycles'], axis=1))
+        # data['Cycles'] = inp_data['Cycles']
+        # data.to_csv("new_data.csv")
+        test_data = np.array(data_model.iloc[-1, :]).reshape(1,-1)
         pred2 = model2.predict(test_data)
  
         #XGB predict
