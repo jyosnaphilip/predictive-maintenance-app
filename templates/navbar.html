@@ -6,9 +6,9 @@
       <a class="nav-link p-1 mx-5 mukta-regular" style="color:rgb(240, 239, 237);" aria-current="page" href="{{url_for('eda')}}">View EDA</a>
     </li>
     <li class="nav-item nav-underline">
-      <form method="post"  action="/handle_buttons">
-        <button class="nav-link p-1 mx-5 mukta-regular" type="submit" name="action" value="predict" style="color:rgb(240, 239, 237)">Predict RUL</button>
-      </form>
+      <a class="nav-link p-1 mx-5 mukta-regular" style="color:rgb(240, 239, 237);" aria-current="page" href="{{url_for('predict_rul')}}">Predict RUL</a>
+
+      
     </li>
     <li class="nav-item nav-underline">
       <a class="nav-link p-1 mx-5 mukta-regular" style="color:rgb(240, 239, 237);" href="{{url_for('team')}}">Meet the team</a>

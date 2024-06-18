@@ -1,24 +1,30 @@
 {% extends 'base.html' %}
 {% block content %}
     <br>
-	<h4 class="px-4 offset-1 mukta-medium">Remaining Useful Life Prediction<h4>
+	
     <div class="container">
-    <div class="row">
+    <div class="row justify-content-center">
+        
         <div class="col-10 px-5 py-2 offset-1 ">
+            <h4 class=" mukta-medium">Remaining Useful Life Prediction<h4></h4>
             <p class='eb-garamond-light' style="text-align: justify;">
                 <br>The NASA Aircraft Engine dataset has been extensively analyzed to predict the remaining useful life (RUL) using various machine learning and deep learning models. 
 	Among the models tested, the Multilayer Perceptron (MLP), XGBoost, Long Short-Term Memory (LSTM), and a hybrid version of LSTM combined with Convolutional Neural Networks (CNN)
 	have shown particularly convincing results. These models have demonstrated superior performance in terms of accuracy and robustness in predicting RUL, making them standout 
-	choices for this application</p>
-   
+	choices for this application<br></p>
+    <form method="post"  action="/handle_buttons" >
+        <button class="btn btn-outline-success p-2 mx-5 top-50 start-50 translate-middle-x mukta-regular" style="font-weight: bolder ; "  type="submit" name="action" value="predict" >Predict RUL</button>
+    </form> 
+    {% if rul %}
     <canvas id="barChart" style="width: 800px; height: 400px;  transform: scale(0.75);
     position: relative;"></canvas>
-            <p class='eb-garamond-light mx-5' style="text-align: justify;">The actual RUL  value of the datapoint that was used for this prediction was <b>{{rul}}</b></p>
-
+        
+        <p class='eb-garamond-light mx-5' style="text-align: justify;">The actual RUL  value of the datapoint that was used for this prediction was <b>{{rul}}</b></p>
+        {% endif %}   
         </div>
     </div>
 </div>
-<div class="container text-center">
+<div class="container text-center ps-5">
     <table class="table table-hover table-dark rounded w-75 mx-auto">
         <thead>
             <tr>

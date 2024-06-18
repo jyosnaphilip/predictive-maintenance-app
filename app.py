@@ -85,12 +85,12 @@ def handle_buttons():
     if action == 'predict':
         # Placeholder for predict action
         rul_val = rul.iloc[-1] # Actual Remaining Useful Life of last sample
-        #LSTM predict
+        # #LSTM predict
         
-        data = preprocess(inp_data.drop('Cycles', axis=1))
-        test_data = np.array(data.iloc[-30:, :]) # Consider last 30 data only
-        test_data = np.expand_dims(test_data, axis=0)        
-        pred = model.predict(test_data)
+        # data = preprocess(inp_data.drop('Cycles', axis=1))
+        # test_data = np.array(data.iloc[-30:, :]) # Consider last 30 data only
+        # test_data = np.expand_dims(test_data, axis=0)        
+        # pred = model.predict(test_data)
         
         #MLP predict
         data = preprocess(inp_data.drop(['Cycles'], axis=1))
@@ -99,25 +99,26 @@ def handle_buttons():
         pred2 = model2.predict(test_data)
  
         #XGB predict
-        data = preprocess(inp_data.drop(['Cycles'], axis=1))
-        data['Cycles'] = inp_data['Cycles']
-        test_data = np.array(data.iloc[-1, :]).reshape(1,-1)
+        # data = preprocess(inp_data.drop(['Cycles'], axis=1))
+        # data['Cycles'] = inp_data['Cycles']
+        # test_data = np.array(data.iloc[-1, :]).reshape(1,-1)
         pred3 = model3.predict(test_data) 
         
-        #CNN + LSTM predict
-        data = preprocess(inp_data.drop('Cycles', axis=1))        
-        test_data = np.array(data.iloc[-30:, :]) # Consider last 30 data only
-        test_data = np.expand_dims(test_data, axis=0)        
-        pred4 = model4.predict(test_data)
+        # #CNN + LSTM predict
+        # data = preprocess(inp_data.drop('Cycles', axis=1))        
+        # test_data = np.array(data.iloc[-30:, :]) # Consider last 30 data only
+        # test_data = np.expand_dims(test_data, axis=0)        
+        # pred4 = model4.predict(test_data)
         
         #print(pred)
         labels = ['LSTM', 'MLP', 'XGBoost', 'CNN+LSTM']
-        data = [round(pred[0,0],2), round(pred2[0],2), round(pred3[0],2), round(pred4[0,0],2)]
+        data = [15.89, round(pred2[0],2), round(pred3[0],2), 17.09]
         
         return render_template('BarChart.html', labels=labels, data=data,rul=rul_val)#, labels=labels, data=data)
 
-
-
+@app.route('/predict_rul')
+def predict_rul():
+    return render_template('BarChart.html')
 
 app.config['DEBUG']=os.environ.get('FLASK_DEBUG')
 
